@@ -10,7 +10,10 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    
+    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), "uploads")
 
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jobboard.db'
     app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET_KEY")
     app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -37,12 +40,10 @@ def create_app():
     return app
 
 app = create_app()
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(
-        app.config['UPLOAD_FOLDER'],
-        filename
-    )
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
