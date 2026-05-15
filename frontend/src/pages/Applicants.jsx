@@ -66,7 +66,7 @@ function Applicants() {
               
               {/* View Resume Link styled as a secondary button */}
               <a
-                href={`http://127.0.0.1:5000/uploads/${a.resume}`}
+                href={`${import.meta.env.VITE_API_URL}/uploads/${app.resume}`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-blue-600 hover:text-blue-800 text-sm font-medium underline inline-block mb-3 md:mb-0"
