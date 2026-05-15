@@ -12,7 +12,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jobboard.db'
-    app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET")
+    app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET_KEY")
     app.config['UPLOAD_FOLDER'] = 'uploads'
 
     CORS(app)
